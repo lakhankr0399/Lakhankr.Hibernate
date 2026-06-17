@@ -12,14 +12,16 @@ public class Main {
 
 	public static void main(String[] args) {
 
-		Employee e = new Employee( 0, "Vikas", "male", 330000, 40);
+		Employee e1 = new Employee( "Vikas", "male", 330000, 40);
+		Employee e2=new Employee("Ankit", "male", 400000, 30); 
 
 		
 		Session session = HibernateConfig.getSessionFactory().openSession();
 
 		Transaction tx = session.beginTransaction();
 		
-		session.persist(e);
+		session.persist(e1);
+		session.persist(e2);
 		
 		tx.commit();
 		
