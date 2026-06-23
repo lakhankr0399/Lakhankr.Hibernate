@@ -15,46 +15,28 @@ import com.hbn.entity.Employee;
 public class Main {
 	
 	public static void main(String[] args) {
-
-		Employee e1 = new Employee();
-		
 		
 		Session session = HibernateConfig.getSessionFactory().openSession();
 		Transaction tx = session.beginTransaction();
 
-// ---get all records from company----		
-//		Query query=session.createQuery("from Employee",Employee.class);	
-//		List list=query.getResultList();
-//		System.out.println(list);
-
+		Employee e1 = new Employee();
 		
-// ---get records with pagination from company---
-//		Query query=session.createQuery("from Employee",Employee.class);
-//		query.setFirstResult(2);
-//		query.setMaxResults(4);
+	      
+        Query query1=session.createNamedQuery("findById",Employee.class);
+		query1.setParameter("id",2);
+		List list1=query1.getResultList();		
+		System.out.println(list1);
 		
-//		List list=query.getResultList();
-//		System.out.println(list);
-	
-//---update query in company----	
-//		MutationQuery query=session.createMutationQuery("update Employee set name=:n where id=:i");
-//		query.setParameter("n","Udit Narayan");
-//		query.setParameter("i", 3);
-//		
-//		query.executeUpdate();
+		System.out.println("------------------");
 		
-//---delete Query from company----	
-//		MutationQuery query=session.createMutationQuery("delete Employee where id=:i");
-//		query.setParameter("i","5");
-//		query.executeUpdate();
-	
-//	Aggregation Function	
+		Query query2=session.createNamedQuery("findByGender", Employee.class);
+		query2.setParameter("gender","female");
+		List list2=query2.getResultList();
+		System.out.println(list2);
 		
-		Query query1=session.createQuery("select min(name) from Employee");
-		List list=query1.getResultList();
-		System.out.println(list);
 		
 		tx.commit();
+		session.close();
 			
 	}
 
