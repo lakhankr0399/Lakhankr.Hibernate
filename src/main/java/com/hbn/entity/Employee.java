@@ -4,7 +4,9 @@ import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
+import jakarta.persistence.JoinColumn;
 import jakarta.persistence.OneToOne;
+import jakarta.persistence.Transient;
 
 
 
@@ -18,7 +20,11 @@ public class Employee {
 	private int salary;
 	private int age;
 	
+	@Transient
+	private String country;
+	
 	@OneToOne
+	@JoinColumn(name="add_id")
 	private Address address;
 	
 	public Employee() {
