@@ -37,15 +37,14 @@ public class Main {
 	e1.setGender("male");
 	e1.setSalary(50000);
 	e1.setAge(24);
-	
 	e1.setAddress(listOfAdd);
 	
-	session.persist(add1);
-	session.persist(add2);
-	session.persist(add3);
+	add1.setEmployee(e1);
+	add2.setEmployee(e1);
+	add3.setEmployee(e1);
+	
 	session.persist(e1);
-	
-	
+		
 	tx.commit();
 	
 }
@@ -53,8 +52,15 @@ public class Main {
 	public static void main(String[] args) {	
 		Session session = HibernateConfig.getSessionFactory().openSession();
 		
-        saveRecord(session);
+   //     saveRecord(session);
+		
+//		Employee employee=session.find(Employee.class, 1);
+//		System.out.println(employee);
 			
+        Address address=session.find(Address.class,2);
+        
+        System.out.println(address);
+        System.out.println(address.getEmployee());
 	}
 
 }
